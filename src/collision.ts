@@ -1,3 +1,4 @@
+// これを書いてる時点だと、衝突判定はだいたいAIに書かせている。
 import { Wall } from './wall';
 import { Circle } from './circle';
 import { Line } from './line';

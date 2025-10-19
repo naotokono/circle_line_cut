@@ -62,8 +62,6 @@ const step = () => {
   }
   const MAX_SUB_STEPS_COUNT = 100;
   subStepsCount = Math.min(subStepsCount, MAX_SUB_STEPS_COUNT);
-  // TODO: デバッグ用なので消す
-  console.log(`subStepsCount: ${subStepsCount}`);
   const subStepDt = g.dt / subStepsCount;
 
   for (let s = 0; s < subStepsCount; s++) {

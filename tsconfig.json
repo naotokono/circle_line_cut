@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ES2020",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "noEmit": true,
+    "isolatedModules": true,
   },
-  "include": ["src", "src/types"]
+  "include": ["src", "src/types", "src/env.d.ts"]
 }

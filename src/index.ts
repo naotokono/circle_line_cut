@@ -61,12 +61,8 @@ const step = () => {
     }
 
     // 衝突判定・解決（サブステップ）
-    const collisions = detectCollisions();
-    collide(
-      collisions[0],
-      collisions[1],
-      collisions[2]
-    );
+    const collisionObj = detectCollisions();
+    collide(collisionObj);
   }
 
   // 描画（フレームごとに一度だけ）

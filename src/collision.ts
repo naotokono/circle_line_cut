@@ -7,11 +7,13 @@ type CollisionCircleIdToWallId = { [circleId: number]: number };
 type CollisionCircleIdToCircleId = { [circleId: number]: number };
 type CollisionCircleIdToLineId = { [circleId: number]: number };
 
-const detectCollisions = (): [
-  CollisionCircleIdToWallId,
-  CollisionCircleIdToCircleId,
-  CollisionCircleIdToLineId
-] => {
+type CollisionObj = {
+  collisionCircleIdToWallId: CollisionCircleIdToWallId,
+  collisionCircleIdToCircleId: CollisionCircleIdToCircleId,
+  collisionCircleIdToLineId: CollisionCircleIdToLineId
+}
+
+const detectCollisions = (): CollisionObj => {
   const collisionCircleIdToWallId: CollisionCircleIdToWallId = {};
   const collisionCircleIdToCircleId: CollisionCircleIdToCircleId = {};
   const collisionCircleIdToLineId: CollisionCircleIdToLineId = {};
@@ -129,18 +131,19 @@ const detectCollisions = (): [
     }
   }
 
-  return [
+  return {
     collisionCircleIdToWallId,
     collisionCircleIdToCircleId,
     collisionCircleIdToLineId
-  ];
+  };
 }
 
-const collide = (
-  collisionCircleIdToWallId: CollisionCircleIdToWallId,
-  collisionCircleIdToCircleId: CollisionCircleIdToCircleId,
-  collisionCircleIdToLineId: CollisionCircleIdToLineId
-): void => {
+const collide = (collisionObj: CollisionObj): void => {
+  const {
+    collisionCircleIdToWallId,
+    collisionCircleIdToCircleId,
+    collisionCircleIdToLineId
+  } = collisionObj;
   for (const circleIdStr of Object.keys(collisionCircleIdToWallId)) {
     const circleId = parseInt(circleIdStr, 10);
     const circle = Circle.idToCircle[circleId];
@@ -227,7 +230,6 @@ const collide = (
 
   for (const circleIdStr of Object.keys(collisionCircleIdToLineId)) {
     const circleId = parseInt(circleIdStr, 10);
-    const circle = Circle.idToCircle[circleId];
     const lineId = collisionCircleIdToLineId[circleId];
     const line = Line.idToLine[lineId];
 

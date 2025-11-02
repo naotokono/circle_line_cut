@@ -1,3 +1,5 @@
+import "./setup/prototypes"; // これは一番最初に来ないといけない
+
 import { g } from "./global";
 import { Circle } from "./circle";
 import { Wall } from "./wall";
@@ -6,18 +8,6 @@ import { Line } from "./line";
 
 // HMR ではなく普通のリロードにする
 (import.meta as any).hot?.accept(() => location.reload());
-
-// 描画用のプロトタイプ定義。
-// TODO: これをここに書くのは良くない気がする…。
-Object.defineProperty(Number.prototype, 'canvasScale', {
-  get() { return (g.canvas.width / 2) * this; },
-});
-
-declare global {
-  interface Number {
-    readonly canvasScale: number;
-  }
-}
 
 // 内部解像度の設定
 g.canvas.width = 1000;
